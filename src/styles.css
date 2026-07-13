@@ -1,0 +1,240 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Lumio Digital — premium dark design system.
+ * All colors are semantic tokens. Never hardcode hex in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 20px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-emerald: var(--emerald);
+  --color-emerald-deep: var(--emerald-deep);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-ink: var(--ink);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+
+  /* Brand palette */
+  --ink: #050505;
+  --emerald: #0e7a5f;
+  --emerald-deep: #0a5a45;
+  --gold: #cda45e;
+  --gold-light: #e5c587;
+
+  --background: #050505;
+  --foreground: #f8f8f8;
+
+  --card: #0c0c0c;
+  --card-foreground: #f8f8f8;
+  --popover: #0c0c0c;
+  --popover-foreground: #f8f8f8;
+
+  --primary: #cda45e;
+  --primary-foreground: #050505;
+  --secondary: #0e7a5f;
+  --secondary-foreground: #f8f8f8;
+
+  --muted: #141414;
+  --muted-foreground: #a3a3a3;
+  --accent: #0e7a5f;
+  --accent-foreground: #f8f8f8;
+
+  --destructive: #b3261e;
+  --destructive-foreground: #f8f8f8;
+
+  --border: rgba(248, 248, 248, 0.08);
+  --input: rgba(248, 248, 248, 0.12);
+  --ring: #cda45e;
+
+  /* Gradients */
+  --gradient-emerald: linear-gradient(135deg, #0e7a5f, #0a5a45);
+  --gradient-gold: linear-gradient(135deg, #ffeba6 0%, #e5c587 30%, #cda45e 70%, #8a6c38 100%);
+  --gradient-luxe: linear-gradient(135deg, #0e7a5f 0%, #0a5a45 40%, #cda45e 100%);
+  --gradient-text: linear-gradient(120deg, #ffffff 0%, #ffdf91 40%, #cda45e 100%);
+
+  /* Shadows */
+  --shadow-soft: 0 20px 60px -25px rgba(0, 0, 0, 0.8);
+  --shadow-emerald: 0 20px 70px -30px rgba(14, 122, 95, 0.55);
+  --shadow-gold: 0 20px 70px -30px rgba(205, 164, 94, 0.45);
+
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(14, 122, 95, 0.08), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(205, 164, 94, 0.05), transparent 25%);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--gold) 35%, transparent);
+    color: var(--foreground);
+  }
+
+  /* Hide native cursor on fine pointers (custom cursor takes over) */
+  @media (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
+  }
+}
+
+/* ---------- Utilities ---------- */
+
+@utility text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gold-gradient {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--glass-border);
+}
+
+@utility glass-strong {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid var(--glass-border);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(248, 248, 248, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(248, 248, 248, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility shadow-emerald {
+  box-shadow: var(--shadow-emerald);
+}
+
+@utility shadow-gold {
+  box-shadow: var(--shadow-gold);
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-30px) translateX(15px); }
+}
+
+@keyframes float-med {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(8deg); }
+}
+
+@keyframes aurora {
+  0% { transform: translate(-10%, -10%) rotate(0deg) scale(1); }
+  33% { transform: translate(10%, 5%) rotate(120deg) scale(1.15); }
+  66% { transform: translate(-5%, 10%) rotate(240deg) scale(0.95); }
+  100% { transform: translate(-10%, -10%) rotate(360deg) scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@utility animate-float-slow {
+  animation: float-slow 12s ease-in-out infinite;
+}
+@utility animate-float-med {
+  animation: float-med 8s ease-in-out infinite;
+}
+@utility animate-aurora {
+  animation: aurora 24s ease-in-out infinite;
+}
+@utility animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+@utility animate-spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+@utility shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold-light) 25%,
+    #ffffff 50%,
+    var(--gold-light) 75%,
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 3s linear infinite;
+}

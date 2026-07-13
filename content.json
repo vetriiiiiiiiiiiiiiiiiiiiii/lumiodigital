@@ -1,0 +1,72 @@
+{
+  "hero": {
+    "headline": [
+      "We Build Digital",
+      "Experiences That",
+      "Convert."
+    ],
+    "subtext": "A premium digital agency crafting high-converting websites, apps, and brands for ambitious companies worldwide."
+  },
+  "about": {
+    "heading": "We turn bold ideas into",
+    "headingHighlight": "refined digital products",
+    "paragraph1": "Lumio Digital is a design-led studio obsessed with detail. We blend strategy, craft, and motion to build experiences that feel effortless — and perform relentlessly.",
+    "paragraph2": "From the first pixel to production, every decision is intentional. The result: brands that command attention and products that convert.",
+    "stats": [
+      {
+        "value": "120+",
+        "label": "Projects Delivered"
+      },
+      {
+        "value": "45+",
+        "label": "Global Clients"
+      },
+      {
+        "value": "9x",
+        "label": "Avg. Conversion Lift"
+      },
+      {
+        "value": "12",
+        "label": "Design Awards"
+      }
+    ]
+  },
+  "services": {
+    "heading": "A full-stack studio for",
+    "headingHighlight": "ambitious brands",
+    "items": [
+      {
+        "title": "Web Design",
+        "desc": "Distinctive, high-end websites engineered to captivate and convert."
+      },
+      {
+        "title": "UI/UX",
+        "desc": "Intuitive interfaces and journeys backed by research and testing."
+      },
+      {
+        "title": "Shopify",
+        "desc": "Custom Shopify storefronts built for speed and scale."
+      },
+      {
+        "title": "E-commerce",
+        "desc": "Conversion-focused commerce experiences end to end."
+      },
+      {
+        "title": "Branding",
+        "desc": "Identity systems that make your brand unforgettable."
+      },
+      {
+        "title": "SEO",
+        "desc": "Technical and content SEO that grows qualified traffic."
+      },
+      {
+        "title": "Web Apps",
+        "desc": "Robust, elegant applications from concept to launch."
+      },
+      {
+        "title": "Maintenance",
+        "desc": "Ongoing care, performance, and evolution of your product."
+      }
+    ]
+  }
+}
