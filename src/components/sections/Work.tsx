@@ -2,12 +2,8 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
 import { X, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import work1 from "@/assets/work-1.jpg";
-import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
-import work4 from "@/assets/work-4.jpg";
-import work5 from "@/assets/work-5.jpg";
-import work6 from "@/assets/work-6.jpg";
+import { useQuery } from "@tanstack/react-query";
+import { getContent } from "@/contentFunctions";
 
 type Project = {
   title: string;
@@ -19,14 +15,7 @@ type Project = {
   desc: string;
 };
 
-const projects: Project[] = [
-  { title: "Lonétion", category: "E-commerce", cat: "web", img: work1, year: "2025", desc: "A luxury fashion storefront with editorial storytelling and a checkout tuned for conversion. +212% revenue in Q1." },
-  { title: "Pulse Finance", category: "Mobile App", cat: "app", img: work2, tall: true, year: "2025", desc: "A fintech companion app with real-time insights, gesture-driven navigation, and a signature dark aesthetic." },
-  { title: "Miter Studio", category: "Branding", cat: "brand", img: work3, year: "2024", desc: "A complete identity system — logo, foil stationery, and guidelines — for a boutique creative studio." },
-  { title: "Agentix", category: "Web App", cat: "app", img: work4, year: "2025", desc: "An analytics SaaS platform with a refined dark dashboard, glass panels, and buttery data viz." },
-  { title: "Elior Skincare", category: "Shopify", cat: "web", img: work5, tall: true, year: "2024", desc: "A premium Shopify build for a skincare brand, blending cinematic product shots with fast performance." },
-  { title: "Modern Arch", category: "Web Design", cat: "web", img: work6, year: "2024", desc: "An editorial portfolio for an architecture practice — minimal, confident, and image-forward." },
-];
+// Removed hardcoded projects
 
 const filters = [
   { label: "All", value: "all" },
@@ -86,7 +75,20 @@ function TiltCard({ p }: { p: Project }) {
 export default function Work() {
   const [active, setActive] = useState("all");
   const [selected, setSelected] = useState<Project | null>(null);
-  const shown = projects.filter((p) => active === "all" || p.cat === active);
+
+  const { data: content } = useQuery({
+    queryKey: ["content"],
+    queryFn: () => getContent(),
+  });
+
+  const workData = content?.work || {
+    heading: "Fields we",
+    headingHighlight: "work in",
+    items: []
+  };
+  const projects = workData.items || [];
+
+  const shown = projects.filter((p: Project) => active === "all" || p.cat === active);
 
   return (
     <section id="work" className="relative mx-auto max-w-7xl px-6 py-28 sm:py-36">
@@ -99,7 +101,7 @@ export default function Work() {
           </Reveal>
           <Reveal variant="blur" delay={0.1}>
             <h2 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl">
-              Fields we <span className="text-gold-gradient">work in</span>.
+              {workData.heading} <span className="text-gold-gradient">{workData.headingHighlight}</span>.
             </h2>
           </Reveal>
         </div>
