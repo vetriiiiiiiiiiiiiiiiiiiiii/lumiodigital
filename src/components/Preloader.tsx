@@ -37,20 +37,17 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
+            className="w-full max-w-md px-6"
           >
-            <img src="/logo.jpg" alt="Lumio Digital" className="h-20 w-auto object-contain drop-shadow-2xl" />
-          </motion.div>
-
-          <div className="mt-10 h-px w-64 overflow-hidden bg-white/10">
-            <motion.div
-              className="h-full bg-gradient-to-r from-emerald via-gold to-gold-light"
-              style={{ width: `${progress}%` }}
-              transition={{ ease: "linear" }}
+            <video 
+              src="/loader.mp4" 
+              autoPlay 
+              muted 
+              loop 
+              playsInline 
+              className="w-full h-auto rounded-3xl drop-shadow-2xl object-cover border border-white/10"
             />
-          </div>
-          <span className="mt-4 text-xs font-medium tracking-[0.3em] text-muted-foreground">
-            {Math.round(progress)}%
-          </span>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
