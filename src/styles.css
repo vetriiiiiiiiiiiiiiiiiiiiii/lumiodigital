@@ -123,9 +123,9 @@
     color: var(--foreground);
   }
 
-  /* Hide native cursor on fine pointers (custom cursor takes over) */
+  /* Hide native cursor on fine pointers unless explicitly shown */
   @media (pointer: fine) {
-    * {
+    body:not(.show-cursor) * {
       cursor: none !important;
     }
   }

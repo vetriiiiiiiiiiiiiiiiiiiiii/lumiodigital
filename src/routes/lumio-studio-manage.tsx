@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/lumio-studio-manage")({
   component: AdminDashboard,
 });
 
@@ -62,7 +62,15 @@ export function AdminDashboard() {
     if (content && !formData) {
       setFormData(content);
     }
-  }, [content]);
+  }, [content, formData]);
+
+  // Restore native cursor while in the admin dashboard
+  useEffect(() => {
+    document.body.classList.add("show-cursor");
+    return () => {
+      document.body.classList.remove("show-cursor");
+    };
+  }, []);
 
   // -- State for Search/Filter --
   const [q, setQ] = useState("");
