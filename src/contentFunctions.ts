@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import * as fs from "fs/promises";
 import * as path from "path";
+import defaultContent from "../content.json";
 
 const contentFilePath = path.resolve(process.cwd(), "content.json");
 
@@ -9,8 +10,9 @@ export const getContent = createServerFn({ method: "GET" }).handler(async () => 
     const data = await fs.readFile(contentFilePath, "utf-8");
     return JSON.parse(data);
   } catch (error) {
-    console.error("Failed to read content.json", error);
-    return null;
+    // fs.readFile will fail on Vercel due to serverless constraints.
+    // Fall back to the statically bundled JSON file.
+    return defaultContent;
   }
 });
 
