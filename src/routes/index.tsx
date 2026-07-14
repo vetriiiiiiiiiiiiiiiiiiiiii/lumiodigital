@@ -11,6 +11,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
 import Work from "@/components/sections/Work";
+import Projects from "@/components/sections/Projects";
 import Process from "@/components/sections/Process";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Contact from "@/components/sections/Contact";
@@ -36,6 +37,7 @@ function Index() {
         <About />
         <Services />
         <Work />
+        <Projects />
         <Process />
         <WhyChooseUs />
         <Contact />
