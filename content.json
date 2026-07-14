@@ -37,12 +37,12 @@
     "heading": "Fields we",
     "headingHighlight": "work in",
     "items": [
-      { "title": "Lonétion", "category": "E-commerce", "cat": "web", "img": "/src/assets/work-1.jpg", "year": "2025", "desc": "A luxury fashion storefront with editorial storytelling and a checkout tuned for conversion. +212% revenue in Q1." },
-      { "title": "Pulse Finance", "category": "Mobile App", "cat": "app", "img": "/src/assets/work-2.jpg", "tall": true, "year": "2025", "desc": "A fintech companion app with real-time insights, gesture-driven navigation, and a signature dark aesthetic." },
-      { "title": "Miter Studio", "category": "Branding", "cat": "brand", "img": "/src/assets/work-3.jpg", "year": "2024", "desc": "A complete identity system — logo, foil stationery, and guidelines — for a boutique creative studio." },
-      { "title": "Agentix", "category": "Web App", "cat": "app", "img": "/src/assets/work-4.jpg", "year": "2025", "desc": "An analytics SaaS platform with a refined dark dashboard, glass panels, and buttery data viz." },
-      { "title": "Elior Skincare", "category": "Shopify", "cat": "web", "img": "/src/assets/work-5.jpg", "tall": true, "year": "2024", "desc": "A premium Shopify build for a skincare brand, blending cinematic product shots with fast performance." },
-      { "title": "Modern Arch", "category": "Web Design", "cat": "web", "img": "/src/assets/work-6.jpg", "year": "2024", "desc": "An editorial portfolio for an architecture practice — minimal, confident, and image-forward." }
+      { "title": "Lonétion", "category": "E-commerce", "cat": "web", "img": "/work-1.jpg", "year": "2025", "desc": "A luxury fashion storefront with editorial storytelling and a checkout tuned for conversion. +212% revenue in Q1." },
+      { "title": "Pulse Finance", "category": "Mobile App", "cat": "app", "img": "/work-2.jpg", "tall": true, "year": "2025", "desc": "A fintech companion app with real-time insights, gesture-driven navigation, and a signature dark aesthetic." },
+      { "title": "Miter Studio", "category": "Branding", "cat": "brand", "img": "/work-3.jpg", "year": "2024", "desc": "A complete identity system — logo, foil stationery, and guidelines — for a boutique creative studio." },
+      { "title": "Agentix", "category": "Web App", "cat": "app", "img": "/work-4.jpg", "year": "2025", "desc": "An analytics SaaS platform with a refined dark dashboard, glass panels, and buttery data viz." },
+      { "title": "Elior Skincare", "category": "Shopify", "cat": "web", "img": "/work-5.jpg", "tall": true, "year": "2024", "desc": "A premium Shopify build for a skincare brand, blending cinematic product shots with fast performance." },
+      { "title": "Modern Arch", "category": "Web Design", "cat": "web", "img": "/work-6.jpg", "year": "2024", "desc": "An editorial portfolio for an architecture practice — minimal, confident, and image-forward." }
     ]
   },
   "projects": {
