@@ -80,6 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Lumio Digital" },
       { name: "theme-color", content: "#050505" },
+      { name: "keywords", content: "Lumio Digital, web design, app development, branding, digital agency, creative studio, e-commerce, UI/UX, software development, web app" },
       { property: "og:title", content: "Lumio Digital — Design. Build. Scale." },
       {
         property: "og:description",
@@ -87,9 +88,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "We build digital experiences that convert. Premium web design, UI/UX, e-commerce, and branding.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://lumiodigital.store" },
+      { property: "og:image", content: "https://lumiodigital.store/work-1.jpg" },
+      { property: "og:image:alt", content: "Lumio Digital Work Examples" },
+      { property: "og:site_name", content: "Lumio Digital" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Lumio Digital — Design. Build. Scale." },
+      { name: "twitter:description", content: "Premium digital agency crafting high-converting websites, apps, and brands." },
+      { name: "twitter:image", content: "https://lumiodigital.store/work-1.jpg" },
     ],
     links: [
+      { rel: "canonical", href: "https://lumiodigital.store/" },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -111,10 +120,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Lumio Digital",
+    "url": "https://lumiodigital.store/",
+    "image": "https://lumiodigital.store/work-1.jpg",
+    "description": "Lumio Digital is a premium digital agency crafting high-converting websites, apps, and brands.",
+    "priceRange": "$$$"
+  };
+
   return (
     <html lang="en" className="dark">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
       </head>
       <body>
         {children}
