@@ -36,7 +36,7 @@ export default function Services() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="services" ref={ref} className="relative mx-auto max-w-7xl px-6 py-28 sm:py-36 overflow-hidden">
+    <section id="services" ref={ref} className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36 overflow-hidden">
       {/* Decorative background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(14,122,95,0.1),transparent_70%)] pointer-events-none" />
 

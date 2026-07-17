@@ -10,7 +10,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="relative py-28 sm:py-36">
+    <section className="relative py-16 sm:py-36">
       <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-2">
         {testimonials.map((t, i) => (
           <Reveal key={t.name} variant={i % 2 === 0 ? "left" : "right"} delay={(i % 2) * 0.1}>

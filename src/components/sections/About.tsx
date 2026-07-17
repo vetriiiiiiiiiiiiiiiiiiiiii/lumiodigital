@@ -33,7 +33,7 @@ export default function About() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="about" ref={ref} className="relative mx-auto max-w-7xl px-6 py-28 sm:py-36">
+    <section id="about" ref={ref} className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
       {/* Matte Black textured background block for contrast */}
       <motion.div 
         style={{ scale, opacity, willChange: "transform, opacity" }}

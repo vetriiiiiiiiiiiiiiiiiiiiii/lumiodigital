@@ -15,7 +15,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative mx-auto max-w-3xl px-6 py-28 sm:py-36">
+    <section id="faq" className="relative mx-auto max-w-3xl px-6 py-16 sm:py-36">
       <div className="space-y-3">
         {faqs.map((f, i) => {
           const isOpen = open === i;

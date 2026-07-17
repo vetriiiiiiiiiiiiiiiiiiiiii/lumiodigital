@@ -28,7 +28,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="relative mx-auto max-w-7xl px-6 py-28 sm:py-36">
+    <section id="pricing" className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
       <div className="grid gap-5 lg:grid-cols-3">
         {plans.map((p, i) => (
           <Reveal key={p.name} variant="up" delay={i * 0.1}>

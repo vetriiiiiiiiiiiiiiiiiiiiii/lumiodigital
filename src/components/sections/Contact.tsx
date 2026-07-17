@@ -3,7 +3,7 @@ import Reveal from "@/components/Reveal";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden py-28 sm:py-36 flex flex-col items-center justify-center">
+    <section id="contact" className="relative overflow-hidden py-16 sm:py-36 flex flex-col items-center justify-center">
       <div className="pointer-events-none absolute right-1/2 top-1/2 h-[50vh] w-[50vh] -translate-y-1/2 translate-x-1/2 rounded-full bg-gold/5 blur-[130px]" />
       
       <Reveal variant="up" delay={0.1}>

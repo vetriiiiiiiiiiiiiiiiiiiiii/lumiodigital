@@ -10,7 +10,7 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative overflow-hidden py-28 sm:py-36">
+    <section className="relative overflow-hidden py-16 sm:py-36">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald/10 blur-[130px]" />
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">

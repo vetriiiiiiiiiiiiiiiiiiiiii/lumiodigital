@@ -37,6 +37,8 @@ function TiltCard({ p }: { p: Project }) {
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
+    // Disable 3D tilt on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     ry.set(px * 10);
     rx.set(-py * 10);
   };
@@ -62,10 +64,10 @@ function TiltCard({ p }: { p: Project }) {
         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90" />
-      <div className="absolute inset-x-0 bottom-0 translate-y-4 p-8 transition-transform duration-700 ease-out group-hover:translate-y-0">
+      <div className="absolute inset-x-0 bottom-0 translate-y-0 p-8 lg:translate-y-4 lg:transition-transform lg:duration-700 lg:ease-out lg:group-hover:translate-y-0">
         <h3 className="mt-2 flex items-center gap-3 text-3xl font-bold tracking-tight text-gold transition-colors duration-500 group-hover:text-gold-light">
           {p.category}
-          <ArrowUpRight className="h-6 w-6 opacity-0 -translate-y-2 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100" />
+          <ArrowUpRight className="h-6 w-6 opacity-100 translate-y-0 lg:-translate-y-2 lg:opacity-0 lg:transition-all lg:duration-500 lg:group-hover:translate-y-0 lg:group-hover:opacity-100" />
         </h3>
       </div>
     </motion.button>
@@ -91,7 +93,7 @@ export default function Work() {
   const shown = projects.filter((p: Project) => active === "all" || p.cat === active);
 
   return (
-    <section id="work" className="relative mx-auto max-w-7xl px-6 py-28 sm:py-36">
+    <section id="work" className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
       <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div className="max-w-xl">
           <Reveal>
