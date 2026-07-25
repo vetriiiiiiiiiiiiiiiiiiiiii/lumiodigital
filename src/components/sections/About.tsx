@@ -4,6 +4,35 @@ import Reveal from "@/components/Reveal";
 import { useQuery } from "@tanstack/react-query";
 import { getContent } from "@/contentFunctions";
 
+const ScrubText = ({ text }: { text: string }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 85%", "end 50%"],
+  });
+  
+  const words = text.split(" ");
+  
+  return (
+    <p ref={ref} className="text-xl leading-relaxed sm:text-2xl lg:text-3xl font-medium tracking-tight">
+      {words.map((word, i) => {
+        const start = i / words.length;
+        const end = start + (1 / words.length);
+        const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
+        const filter = useTransform(scrollYProgress, [start, end], ["blur(4px)", "blur(0px)"]);
+        const color = useTransform(scrollYProgress, [start, end], ["#a3a3a3", "#e5c587"]);
+        return (
+          <span key={i} className="inline-block mr-[0.25em]">
+            <motion.span style={{ opacity, filter, color, display: "inline-block", willChange: "opacity, filter, color" }}>
+              {word}
+            </motion.span>
+          </span>
+        );
+      })}
+    </p>
+  );
+};
+
 export default function About() {
   const { data: content } = useQuery({
     queryKey: ["content"],
@@ -58,17 +87,9 @@ export default function About() {
           </Reveal>
         </div>
 
-        <div className="space-y-6">
-          <Reveal variant="up" delay={0.15}>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              {about.paragraph1}
-            </p>
-          </Reveal>
-          <Reveal variant="up" delay={0.25}>
-            <p className="leading-relaxed text-muted-foreground">
-              {about.paragraph2}
-            </p>
-          </Reveal>
+        <div className="space-y-10 lg:space-y-16">
+          <ScrubText text={about.paragraph1} />
+          <ScrubText text={about.paragraph2} />
         </div>
       </div>
 

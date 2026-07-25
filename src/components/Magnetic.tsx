@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring } from "motion/react";
 
 export default function Magnetic({
   children,
-  strength = 0.35,
+  strength = 0.5,
   className,
 }: {
   children: ReactNode;
@@ -13,8 +13,8 @@ export default function Magnetic({
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const sx = useSpring(x, { damping: 15, stiffness: 200 });
-  const sy = useSpring(y, { damping: 15, stiffness: 200 });
+  const sx = useSpring(x, { damping: 12, stiffness: 250, mass: 0.8 });
+  const sy = useSpring(y, { damping: 12, stiffness: 250, mass: 0.8 });
 
   const onMove = (e: React.MouseEvent) => {
     const el = ref.current;

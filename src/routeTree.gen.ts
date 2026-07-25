@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as LumioStudioManageRouteImport } from './routes/lumio-studio-manage'
 import { Route as BreakpointRouteImport } from './routes/breakpoint'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LumioStudioManageRoute = LumioStudioManageRouteImport.update({
+  id: '/lumio-studio-manage',
+  path: '/lumio-studio-manage',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BreakpointRoute = BreakpointRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/breakpoint': typeof BreakpointRoute
+  '/lumio-studio-manage': typeof LumioStudioManageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/breakpoint': typeof BreakpointRoute
+  '/lumio-studio-manage': typeof LumioStudioManageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/breakpoint': typeof BreakpointRoute
+  '/lumio-studio-manage': typeof LumioStudioManageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/breakpoint' | '/sitemap.xml'
+  fullPaths: '/' | '/breakpoint' | '/lumio-studio-manage' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/breakpoint' | '/sitemap.xml'
-  id: '__root__' | '/' | '/breakpoint' | '/sitemap.xml'
+  to: '/' | '/breakpoint' | '/lumio-studio-manage' | '/sitemap.xml'
+  id: '__root__' | '/' | '/breakpoint' | '/lumio-studio-manage' | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BreakpointRoute: typeof BreakpointRoute
+  LumioStudioManageRoute: typeof LumioStudioManageRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lumio-studio-manage': {
+      id: '/lumio-studio-manage'
+      path: '/lumio-studio-manage'
+      fullPath: '/lumio-studio-manage'
+      preLoaderRoute: typeof LumioStudioManageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/breakpoint': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BreakpointRoute: BreakpointRoute,
+  LumioStudioManageRoute: LumioStudioManageRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport

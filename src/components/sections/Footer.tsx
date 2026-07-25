@@ -1,5 +1,7 @@
 import PillButton from "@/components/PillButton";
 import Reveal from "@/components/Reveal";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 const cols = [
   { title: "Services", links: ["Web Design", "UI/UX", "E-commerce", "Branding", "SEO"] },
@@ -8,16 +10,29 @@ const cols = [
 ];
 
 export default function Footer() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
+  const opacity = useTransform(scrollYProgress, [0.2, 1], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"]);
+
   return (
-    <footer className="relative overflow-hidden border-t border-white/5 bg-muted/20">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[40vh] w-[80vw] -translate-x-1/2 rounded-full bg-emerald/10 blur-[130px]" />
-      <div className="relative mx-auto max-w-7xl px-6 py-20">
+    <footer ref={ref} className="relative overflow-hidden bg-[#020202] pt-32 pb-10 mt-20 border-t border-white/5">
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[60vh] w-[100vw] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(circle_at_center,rgba(229,197,135,0.08),transparent_70%)] blur-3xl animate-pulse" />
+      
+      <motion.div style={{ scale, opacity, y, willChange: "transform, opacity" }} className="relative mx-auto max-w-7xl px-6">
         <Reveal variant="blur">
-          <div className="flex flex-col items-start justify-between gap-8 pb-14 md:flex-row md:items-end">
-            <h2 className="max-w-lg text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
-              Ready to <span className="text-gradient">stand out</span>?
+          <div className="flex flex-col items-center justify-center pb-24 text-center">
+            <h2 className="text-[14vw] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-[#e5c587]/10 drop-shadow-[0_0_60px_rgba(205,164,94,0.15)]">
+              LET'S TALK
             </h2>
-            <PillButton href="#contact">Start a Project</PillButton>
+            <div className="mt-8">
+              <PillButton href="#contact" className="scale-125">Start a Project</PillButton>
+            </div>
           </div>
         </Reveal>
 
@@ -55,7 +70,7 @@ export default function Footer() {
           <span>© {new Date().getFullYear()} Lumio Digital. All rights reserved.</span>
           <span>Crafted with precision.</span>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }
