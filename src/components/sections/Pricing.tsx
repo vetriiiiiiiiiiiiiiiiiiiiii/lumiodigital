@@ -28,15 +28,15 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
+    <section id="pricing" aria-label="Pricing Plans" className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
       <div className="grid gap-5 lg:grid-cols-3">
         {plans.map((p, i) => (
           <Reveal key={p.name} variant="up" delay={i * 0.1}>
             <div
               className={`relative flex h-full flex-col rounded-3xl p-10 transition-all duration-500 hover:-translate-y-2 border shadow-soft ${
                 p.featured
-                  ? "bg-[#0c0c0c]/90 backdrop-blur-xl border-gold/40 shadow-[0_0_40px_rgba(205,164,94,0.15)]"
-                  : "bg-[#080808]/80 backdrop-blur-md border-white/5 hover:bg-[#0c0c0c] hover:border-emerald/30 hover:shadow-[0_0_30px_rgba(14,122,95,0.15)]"
+                  ? "bg-card backdrop-blur-xl border-gold/40 shadow-[0_0_40px_rgba(205,164,94,0.15)]"
+                  : "bg-muted backdrop-blur-md border-border hover:bg-card hover:border-emerald/30 hover:shadow-[0_0_30px_rgba(14,122,95,0.15)]"
               }`}
             >
               {/* Subtle inner glow */}
@@ -44,7 +44,7 @@ export default function Pricing() {
                 p.featured ? "bg-gradient-to-br from-gold/5 to-transparent" : "bg-gradient-to-br from-emerald/5 to-transparent"
               }`} />
               {p.featured && (
-                <span className="absolute -top-3 left-8 rounded-full bg-gradient-to-r from-gold-light to-gold px-4 py-1.5 text-[10px] font-bold tracking-widest text-[#050505] uppercase">
+                <span className="absolute -top-3 left-8 rounded-full bg-gradient-to-r from-gold-light to-gold px-4 py-1.5 text-[10px] font-bold tracking-widest text-background uppercase">
                   {p.tag}
                 </span>
               )}

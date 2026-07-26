@@ -53,17 +53,17 @@ function TiltCard({ p }: { p: Project }) {
       onMouseMove={onMove}
       onMouseLeave={reset}
       style={{ rotateX: srx, rotateY: sry, transformPerspective: 900 }}
-      className={`group relative block w-full overflow-hidden rounded-3xl bg-[#080808] border border-white/5 shadow-soft text-left ${
+      className={`group relative block w-full overflow-hidden rounded-3xl bg-card border border-border shadow-soft text-left ${
         p.tall ? "aspect-[3/4]" : "aspect-[4/3]"
       }`}
     >
       <img
         src={p.img}
-        alt={p.title}
+        alt={`${p.title} - ${p.category} Project by Lumio Digital`}
         loading="lazy"
         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-90" />
       <div className="absolute inset-x-0 bottom-0 translate-y-0 p-8 lg:translate-y-4 lg:transition-transform lg:duration-700 lg:ease-out lg:group-hover:translate-y-0">
         <h3 className="mt-2 flex items-center gap-3 text-3xl font-bold tracking-tight text-gold transition-colors duration-500 group-hover:text-gold-light">
           {p.category}
@@ -93,7 +93,7 @@ export default function Work() {
   const shown = projects.filter((p: Project) => active === "all" || p.cat === active);
 
   return (
-    <section id="work" className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
+    <section id="work" aria-label="Our Portfolio" className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
       <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div className="max-w-xl">
           <Reveal>

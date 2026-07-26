@@ -10,7 +10,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="relative bg-background py-24 sm:py-32">
+    <section id="process" aria-label="Our Process" className="relative bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-16 md:mb-24">
           <Reveal>
