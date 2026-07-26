@@ -8,12 +8,11 @@ const ScrubWord = ({ word, i, total, scrollYProgress }: { word: string; i: numbe
   const start = i / total;
   const end = start + (1 / total);
   const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
-  const filter = useTransform(scrollYProgress, [start, end], ["blur(4px)", "blur(0px)"]);
   const color = useTransform(scrollYProgress, [start, end], ["#a3a3a3", "#e5c587"]);
   
   return (
     <span className="inline-block mr-[0.25em]">
-      <motion.span style={{ opacity, filter, color, display: "inline-block", willChange: "opacity, filter, color" }}>
+      <motion.span style={{ opacity, color, display: "inline-block", willChange: "opacity, color" }}>
         {word}
       </motion.span>
     </span>

@@ -8,7 +8,7 @@ export default function WavyBackground() {
   if (!mounted) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-30">
+    <div className="hidden sm:block pointer-events-none fixed inset-0 -z-50 overflow-hidden opacity-30">
       {/* Wave 1 - Emerald */}
       <motion.div
         className="absolute bottom-0 left-0 h-[60vh] w-[200vw]"
@@ -63,7 +63,6 @@ export default function WavyBackground() {
                left: `${Math.random() * 100}%`,
                top: `${Math.random() * 100}%`,
                backgroundColor: i % 2 === 0 ? "var(--gold)" : "var(--emerald)",
-               boxShadow: `0 0 10px ${i % 2 === 0 ? "rgba(205,164,94,0.5)" : "rgba(14,122,95,0.5)"}`
              }}
              animate={{ y: [0, -100, 0], opacity: [0.2, 0.8, 0.2] }}
              transition={{ duration: 10 + Math.random() * 15, repeat: Infinity, ease: "easeInOut", delay: Math.random() * 5 }}

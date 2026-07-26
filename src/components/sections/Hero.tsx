@@ -13,7 +13,7 @@ function Particles() {
 
   useEffect(() => {
     setDots(
-      Array.from({ length: 26 }).map(() => ({
+      Array.from({ length: 12 }).map(() => ({
         size: 1 + Math.random() * 3,
         left: Math.random() * 100,
         top: Math.random() * 100,
@@ -34,9 +34,8 @@ function Particles() {
             height: d.size,
             left: `${d.left}%`,
             top: `${d.top}%`,
-            boxShadow: "0 0 8px rgba(205,164,94,0.6)",
           }}
-          animate={{ y: [0, -40, 0], opacity: [0.15, 0.8, 0.15] }}
+          animate={{ y: [0, -40, 0], opacity: [0.15, 0.6, 0.15] }}
           transition={{ duration: d.dur, repeat: Infinity, delay: d.delay, ease: "easeInOut" }}
         />
       ))}
