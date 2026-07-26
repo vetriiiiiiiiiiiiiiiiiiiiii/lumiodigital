@@ -4,6 +4,22 @@ import Reveal from "@/components/Reveal";
 import { useQuery } from "@tanstack/react-query";
 import { getContent } from "@/contentFunctions";
 
+const ScrubWord = ({ word, i, total, scrollYProgress }: { word: string; i: number; total: number; scrollYProgress: any }) => {
+  const start = i / total;
+  const end = start + (1 / total);
+  const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
+  const filter = useTransform(scrollYProgress, [start, end], ["blur(4px)", "blur(0px)"]);
+  const color = useTransform(scrollYProgress, [start, end], ["#a3a3a3", "#e5c587"]);
+  
+  return (
+    <span className="inline-block mr-[0.25em]">
+      <motion.span style={{ opacity, filter, color, display: "inline-block", willChange: "opacity, filter, color" }}>
+        {word}
+      </motion.span>
+    </span>
+  );
+};
+
 const ScrubText = ({ text }: { text: string }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -15,20 +31,9 @@ const ScrubText = ({ text }: { text: string }) => {
   
   return (
     <p ref={ref} className="text-xl leading-relaxed sm:text-2xl lg:text-3xl font-medium tracking-tight">
-      {words.map((word, i) => {
-        const start = i / words.length;
-        const end = start + (1 / words.length);
-        const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
-        const filter = useTransform(scrollYProgress, [start, end], ["blur(4px)", "blur(0px)"]);
-        const color = useTransform(scrollYProgress, [start, end], ["#a3a3a3", "#e5c587"]);
-        return (
-          <span key={i} className="inline-block mr-[0.25em]">
-            <motion.span style={{ opacity, filter, color, display: "inline-block", willChange: "opacity, filter, color" }}>
-              {word}
-            </motion.span>
-          </span>
-        );
-      })}
+      {words.map((word, i) => (
+        <ScrubWord key={i} word={word} i={i} total={words.length} scrollYProgress={scrollYProgress} />
+      ))}
     </p>
   );
 };
