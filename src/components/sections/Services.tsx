@@ -36,7 +36,7 @@ export default function Services() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="services" ref={ref} className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36 overflow-hidden">
+    <section id="services" aria-label="Our Services" ref={ref} className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36 overflow-hidden">
       {/* Decorative background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(14,122,95,0.1),transparent_70%)] pointer-events-none" />
 
@@ -63,7 +63,7 @@ export default function Services() {
               data-cursor="button"
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="group relative h-full overflow-hidden rounded-3xl bg-[#080808] border border-white/5 p-7 shadow-lg transition-all duration-500 hover:border-gold/30 hover:shadow-gold"
+              className="group relative h-full overflow-hidden rounded-3xl bg-card border border-border p-7 shadow-lg transition-all duration-500 hover:border-gold/30 hover:shadow-gold"
               style={{ willChange: "transform" }}
             >
               {/* Glossy gradient overlay on hover */}
@@ -72,7 +72,7 @@ export default function Services() {
               />
               
               <div className="relative z-10">
-                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-[#141414] to-[#0c0c0c] border border-white/10 text-emerald transition-all duration-500 group-hover:text-gold group-hover:scale-110 shadow-inner">
+                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-muted to-card border border-border text-emerald transition-all duration-500 group-hover:text-gold group-hover:scale-110 shadow-inner">
                   <Icon className="h-6 w-6" strokeWidth={1.5} />
                 </div>
                 <h3 className="mt-8 text-2xl font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-gold-light">{s.title}</h3>

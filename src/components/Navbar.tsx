@@ -53,7 +53,7 @@ export default function Navbar() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav aria-label="Main Navigation" className="hidden items-center gap-1 lg:flex">
             {links.map((l) => (
               <a
                 key={l.href}
@@ -97,8 +97,6 @@ export default function Navbar() {
               <Menu className="h-5 w-5" />
             </button>
           </div>
-            <Menu className="h-5 w-5" />
-          </button>
         </div>
       </motion.header>
 
@@ -122,7 +120,7 @@ export default function Navbar() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <nav className="flex flex-1 flex-col justify-center gap-2 px-8">
+            <nav aria-label="Mobile Navigation" className="flex flex-1 flex-col justify-center gap-2 px-8">
               {links.map((l, i) => (
                 <motion.a
                   key={l.href}

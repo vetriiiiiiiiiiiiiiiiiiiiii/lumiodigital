@@ -62,11 +62,11 @@ export default function About() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="about" ref={ref} className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
+    <section id="about" aria-label="About Lumio Digital" ref={ref} className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36">
       {/* Matte Black textured background block for contrast */}
       <motion.div 
         style={{ scale, opacity, willChange: "transform, opacity" }}
-        className="absolute inset-0 rounded-[3rem] bg-[#050505] border border-white/5 shadow-2xl -z-10 overflow-hidden"
+        className="absolute inset-0 rounded-[3rem] bg-card border border-border shadow-2xl -z-10 overflow-hidden"
       >
         <div className="absolute inset-0 bg-grid opacity-30" />
         <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_center,rgba(14,122,95,0.15),transparent_70%)]" />

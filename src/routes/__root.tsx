@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Lumio Digital" },
       { name: "theme-color", content: "#050505" },
-      { name: "keywords", content: "Lumio Digital, web design, app development, branding, digital agency, creative studio, e-commerce, UI/UX, software development, web app" },
+      { name: "keywords", content: "Premium Digital Agency, Web Design, Web App Development, Lumio Digital, E-commerce, UI/UX Studio, Custom Software Development, High-converting Websites" },
       { property: "og:title", content: "Lumio Digital — Design. Build. Scale." },
       {
         property: "og:description",
@@ -126,9 +126,20 @@ function RootShell({ children }: { children: ReactNode }) {
     "@type": "ProfessionalService",
     "name": "Lumio Digital",
     "url": "https://lumiodigital.store/",
-    "image": "https://lumiodigital.store/work-1.jpg",
-    "description": "Lumio Digital is a premium digital agency crafting high-converting websites, apps, and brands.",
-    "priceRange": "$$$"
+    "logo": "https://lumiodigital.store/logo.jpg",
+    "image": "https://lumiodigital.store/hero-bg.jpg",
+    "description": "Lumio Digital is a premium digital agency crafting high-converting websites, apps, and brands. Design. Build. Scale.",
+    "priceRange": "$$$",
+    "sameAs": [
+      "https://lumiodigital.store",
+      "https://twitter.com/lumiodigital",
+      "https://linkedin.com/company/lumiodigital",
+      "https://instagram.com/lumiodigital"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IN"
+    }
   };
 
   return (

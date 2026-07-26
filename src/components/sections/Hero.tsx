@@ -73,8 +73,9 @@ export default function Hero() {
   const subtext = content?.hero?.subtext || "A premium digital agency crafting high-converting websites, apps, and brands for ambitious companies worldwide.";
 
   return (
-    <section
+    <header
       id="hero"
+      aria-label="Welcome to Lumio Digital"
       ref={ref}
       onMouseMove={onMove}
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-background"
@@ -178,7 +179,7 @@ export default function Hero() {
         transition={{ delay: 1.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div className="flex h-9 w-5 items-start justify-center rounded-full border border-white/20 p-1">
+        <div className="flex h-9 w-5 items-start justify-center rounded-full border border-border p-1" aria-hidden="true">
           <motion.span
             className="h-1.5 w-1 rounded-full bg-gold"
             animate={{ y: [0, 10, 0] }}
@@ -186,6 +187,6 @@ export default function Hero() {
           />
         </div>
       </motion.div>
-    </section>
+    </header>
   );
 }
