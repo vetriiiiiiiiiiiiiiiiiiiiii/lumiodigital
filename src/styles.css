@@ -48,7 +48,7 @@
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
 }
 
-:root {
+:root, .dark {
   --radius: 1rem;
 
   /* Brand palette */
@@ -96,6 +96,39 @@
 
   --glass: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+.light {
+  --background: #fdfbf7;
+  --foreground: #1c1917;
+
+  --card: #ffffff;
+  --card-foreground: #1c1917;
+  --popover: #ffffff;
+  --popover-foreground: #1c1917;
+
+  --primary: #cda45e;
+  --primary-foreground: #ffffff;
+  --secondary: #0e7a5f;
+  --secondary-foreground: #ffffff;
+
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #1c1917;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.1);
+  
+  --gradient-text: linear-gradient(120deg, #1c1917 0%, #44403c 40%, #cda45e 100%);
+
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+
+  --shadow-soft: 0 10px 40px -15px rgba(0, 0, 0, 0.05);
 }
 
 @layer base {

@@ -77,13 +77,13 @@ export default function Hero() {
       id="hero"
       ref={ref}
       onMouseMove={onMove}
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#020202]"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-background"
       style={{ backgroundImage: "url('/hero-bg.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
     >
       {/* Animated aurora gradient & Background Image Fallback */}
-      <div className="absolute inset-0 z-0 bg-black/60">
+      <div className="absolute inset-0 z-0 bg-background/60">
         <div className="absolute top-0 left-1/2 w-full max-w-3xl -translate-x-1/2 h-[50vh] bg-[radial-gradient(ellipse_at_top,rgba(229,197,135,0.15),transparent_70%)] opacity-60" />
-        <div className="absolute bottom-0 w-full h-[50vh] bg-gradient-to-t from-[#020202] to-transparent" />
+        <div className="absolute bottom-0 w-full h-[50vh] bg-gradient-to-t from-background to-transparent" />
       </div>
 
       <div className="pointer-events-none absolute inset-0">
@@ -110,14 +110,14 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
             animate={mounted ? { opacity: 1, scale: 1, filter: "blur(0px)" } : {}}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="mb-8 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md"
+            className="mb-8 rounded-full border border-border bg-muted/20 px-4 py-1.5 backdrop-blur-md"
           >
             <span className="text-xs font-medium uppercase tracking-widest text-gold-light">
               Lumio Digital Studio
             </span>
           </motion.div>
 
-          <h1 className="text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tighter text-white">
+          <h1 className="text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tighter text-foreground">
             {headline.map((line, li) => (
               <span key={li} className="block overflow-hidden pb-2">
                 <motion.span
@@ -148,14 +148,24 @@ export default function Hero() {
             className="mt-12 flex flex-col sm:flex-row items-center gap-6"
           >
             <Magnetic>
-              <PillButton href="https://wa.me/919600407657" target="_blank" rel="noopener noreferrer">
-                Start a Project <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </PillButton>
+              <a 
+                href="https://wa.me/919600407657" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative flex h-14 items-center justify-center gap-2 overflow-hidden rounded-full bg-foreground px-8 text-sm font-semibold text-background transition-transform hover:scale-105 active:scale-95"
+              >
+                Start a Project 
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-gold-light to-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </a>
             </Magnetic>
             <Magnetic>
-              <PillButton href="#work" variant="outline">
+              <a 
+                href="#work"
+                className="group flex h-14 items-center justify-center px-8 text-sm font-medium text-foreground transition-colors hover:text-gold-light"
+              >
                 View Portfolio
-              </PillButton>
+              </a>
             </Magnetic>
           </motion.div>
         </div>

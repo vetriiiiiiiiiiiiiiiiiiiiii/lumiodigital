@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import PillButton from "./PillButton";
+import { useTheme } from "./ThemeProvider";
 
 const links = [
   { label: "About", href: "#about" },
@@ -15,6 +16,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -40,7 +42,7 @@ export default function Navbar() {
         <div
           className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 ${
             scrolled
-              ? "bg-[#1a1a1a]/40 backdrop-blur-[40px] saturate-[1.5] border border-white/10 mx-4 rounded-full py-2 pl-5 pr-2 sm:mx-auto shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
+              ? "bg-background/80 backdrop-blur-[40px] saturate-[1.5] border border-border mx-4 rounded-full py-2 pl-5 pr-2 sm:mx-auto shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]"
               : "py-2"
           }`}
         >
@@ -65,18 +67,36 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-4">
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="grid h-10 w-10 place-items-center rounded-full border border-border bg-muted/50 text-foreground transition-colors hover:bg-muted"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
             <PillButton href="https://wa.me/919600407657" className="px-6 py-2.5">
               Start a Project
             </PillButton>
           </div>
 
-          <button
-            onClick={() => setOpen(true)}
-            className="grid h-11 w-11 place-items-center rounded-full bg-[#141414] border border-white/5 text-gold lg:hidden shadow-inner"
-            aria-label="Open menu"
-            data-cursor="button"
-          >
+          <div className="flex items-center gap-3 lg:hidden">
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="grid h-11 w-11 place-items-center rounded-full bg-muted/50 border border-border text-foreground shadow-inner"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+            <button
+              onClick={() => setOpen(true)}
+              className="grid h-11 w-11 place-items-center rounded-full bg-muted/50 border border-border text-gold shadow-inner"
+              aria-label="Open menu"
+              data-cursor="button"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </div>
             <Menu className="h-5 w-5" />
           </button>
         </div>
@@ -89,13 +109,13 @@ export default function Navbar() {
             animate={{ clipPath: "circle(150% at 90% 5%)" }}
             exit={{ clipPath: "circle(0% at 90% 5%)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[110] flex flex-col bg-[#050505]/95 backdrop-blur-3xl"
+            className="fixed inset-0 z-[110] flex flex-col bg-background/95 backdrop-blur-3xl"
           >
             <div className="flex items-center justify-between px-6 py-6">
-              <img src="/logo.jpg" alt="Lumio Digital" className="h-10 w-auto object-contain" />
+              <img src="/logo.jpg" alt="Lumio Digital" className="h-10 w-auto object-contain rounded" />
               <button
                 onClick={() => setOpen(false)}
-                className="grid h-11 w-11 place-items-center rounded-full bg-[#141414] border border-white/5 text-gold shadow-inner"
+                className="grid h-11 w-11 place-items-center rounded-full bg-muted border border-border text-gold shadow-inner"
                 aria-label="Close menu"
                 data-cursor="button"
               >
@@ -111,7 +131,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 + i * 0.07 }}
-                  className="border-b border-white/5 py-4 text-4xl font-semibold tracking-tight"
+                  className="border-b border-border py-4 text-4xl font-semibold tracking-tight text-foreground"
                 >
                   {l.label}
                 </motion.a>

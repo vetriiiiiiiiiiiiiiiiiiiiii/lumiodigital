@@ -21,13 +21,13 @@ export default function Footer() {
   const y = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"]);
 
   return (
-    <footer ref={ref} className="relative overflow-hidden bg-[#020202] pt-32 pb-10 mt-20 border-t border-white/5">
+    <footer ref={ref} className="relative overflow-hidden bg-background pt-32 pb-10 mt-20 border-t border-border">
       <div className="pointer-events-none absolute left-1/2 top-0 h-[60vh] w-[100vw] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(circle_at_center,rgba(229,197,135,0.08),transparent_70%)] blur-3xl animate-pulse" />
       
       <motion.div style={{ scale, opacity, y, willChange: "transform, opacity" }} className="relative mx-auto max-w-7xl px-6">
         <Reveal variant="blur">
           <div className="flex flex-col items-center justify-center pb-24 text-center">
-            <h2 className="text-[14vw] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-[#e5c587]/10 drop-shadow-[0_0_60px_rgba(205,164,94,0.15)]">
+            <h2 className="text-[14vw] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground via-foreground/80 to-gold-light/10 drop-shadow-[0_0_60px_rgba(205,164,94,0.15)]">
               LET'S TALK
             </h2>
             <div className="mt-8">
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
         </Reveal>
 
-        <div className="grid gap-10 border-t border-white/5 pt-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 border-t border-border pt-14 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <a href="#hero" className="flex items-center" data-cursor="button">
               <img src="/logo.jpg" alt="Lumio Digital" className="h-12 w-auto object-contain" />
@@ -66,7 +66,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 text-sm text-muted-foreground sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 text-sm text-muted-foreground sm:flex-row">
           <span>© {new Date().getFullYear()} Lumio Digital. All rights reserved.</span>
           <span>Crafted with precision.</span>
         </div>

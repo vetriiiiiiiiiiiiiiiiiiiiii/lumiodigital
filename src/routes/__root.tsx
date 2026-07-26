@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 import appCss from "../styles.css?url";
 
@@ -131,9 +132,14 @@ function RootShell({ children }: { children: ReactNode }) {
   };
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','dark');var e=localStorage.getItem('vite-ui-theme');if('system'===e||(!e)){var t='(prefers-color-scheme: dark)',m=window.matchMedia(t);if(m.media!==t||m.matches){d.classList.add('dark')}else{d.classList.add('light')}}else if(e){c.add(e)}}catch(e){}}()`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -152,8 +158,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <Outlet />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

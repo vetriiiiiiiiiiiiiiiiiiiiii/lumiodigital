@@ -10,7 +10,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="relative bg-[#020202] py-24 sm:py-32">
+    <section id="process" className="relative bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-16 md:mb-24">
           <Reveal>
@@ -19,7 +19,7 @@ export default function Process() {
             </p>
           </Reveal>
           <Reveal variant="blur" delay={0.1}>
-            <h2 className="text-4xl font-black leading-none tracking-tighter sm:text-6xl text-white">
+            <h2 className="text-4xl font-black leading-none tracking-tighter sm:text-6xl text-foreground">
               A process built for <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-light to-emerald">clarity & precision.</span>
             </h2>
           </Reveal>
@@ -28,12 +28,12 @@ export default function Process() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:gap-20">
           {steps.map((s, i) => (
             <Reveal key={s.n} variant="up" delay={i * 0.1}>
-              <div className="group flex flex-col items-start gap-6 border-t border-white/10 pt-8 transition-colors hover:border-gold-light/50">
-                <span className="text-5xl font-black text-white/5 transition-colors duration-500 group-hover:text-gold-light">
+              <div className="group flex flex-col items-start gap-6 border-t border-border pt-8 transition-colors hover:border-gold-light/50">
+                <span className="text-5xl font-black text-foreground/5 transition-colors duration-500 group-hover:text-gold-light">
                   {s.n}
                 </span>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">{s.title}</h3>
+                  <h3 className="text-2xl font-bold text-foreground mb-3 tracking-tight">{s.title}</h3>
                   <p className="text-base leading-relaxed text-muted-foreground/80">{s.desc}</p>
                 </div>
               </div>
