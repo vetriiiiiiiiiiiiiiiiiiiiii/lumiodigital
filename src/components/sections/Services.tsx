@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import Reveal from "@/components/Reveal";
 import { useQuery } from "@tanstack/react-query";
 import { getContent } from "@/contentFunctions";
@@ -26,21 +25,12 @@ export default function Services() {
     ]
   };
 
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "1.2 1"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
-    <section id="services" aria-label="Our Services" ref={ref} className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36 overflow-hidden">
+    <section id="services" aria-label="Our Services" className="relative mx-auto max-w-7xl px-6 py-16 sm:py-36 overflow-hidden">
       {/* Decorative background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(14,122,95,0.1),transparent_70%)] pointer-events-none" />
 
-      <motion.div style={{ y, opacity }} className="mb-16 max-w-2xl relative z-10">
+      <div className="mb-16 max-w-2xl relative z-10">
         <Reveal>
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
             Our Expertise
@@ -51,7 +41,7 @@ export default function Services() {
             {services.heading} <span className="text-gold-gradient">{services.headingHighlight}</span>.
           </h2>
         </Reveal>
-      </motion.div>
+      </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
         {services.items.map((s: any, i: number) => {
