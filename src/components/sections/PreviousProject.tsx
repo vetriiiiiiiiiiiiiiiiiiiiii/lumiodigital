@@ -50,58 +50,42 @@ export default function PreviousProject() {
         </h2>
       </Reveal>
 
-      <motion.div 
-        ref={ref}
-        style={{ scale, opacity, willChange: "transform, opacity" }}
-        className="group relative overflow-hidden rounded-[2rem] bg-card border border-border shadow-2xl p-4 sm:p-6"
-      >
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          {/* Image Side */}
-          <div className="relative w-full md:w-2/5 aspect-[16/9] md:aspect-[4/3] shrink-0 overflow-hidden rounded-2xl">
+      <div className="flex justify-center">
+        <motion.div 
+          ref={ref}
+          style={{ scale, opacity, willChange: "transform, opacity" }}
+          className="group relative flex items-center gap-5 overflow-hidden rounded-2xl bg-card border border-border shadow-xl p-3 pr-6 max-w-md w-full hover:border-gold/30 transition-colors"
+        >
+          {/* Small Image */}
+          <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-xl">
             <motion.img 
               src={project.img} 
               alt={project.title}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
           </div>
 
-          {/* Content Side */}
-          <div className="relative z-10 flex-1 flex flex-col justify-center">
-            <h3 className="mb-2 text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+          {/* Minimal Content */}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-base font-bold tracking-tight text-foreground truncate">
               {project.title}
             </h3>
-            <p className="mb-4 font-medium text-emerald uppercase tracking-widest text-xs">
-              {project.subtitle} &bull; {project.year}
-            </p>
-            <p className="mb-8 max-w-lg text-sm sm:text-base leading-relaxed text-muted-foreground">
+            <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
               {project.desc}
             </p>
-            
-            <div className="flex flex-col sm:flex-row sm:items-center gap-8 mb-4">
-              <Magnetic>
-                <a 
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-12 w-fit items-center justify-center gap-2 rounded-full bg-foreground px-6 text-sm font-semibold text-background transition-transform hover:scale-105 shrink-0"
-                >
-                  View Live Site
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </Magnetic>
-              
-              <div className="flex flex-wrap items-center gap-6 sm:border-l sm:border-border sm:pl-8">
-                {project.stats.map((stat: any, i: number) => (
-                  <div key={i} className="flex flex-col">
-                    <span className="text-lg font-bold text-gold leading-none">{stat.value}</span>
-                    <span className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{stat.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
-        </div>
-      </motion.div>
+
+          {/* Action */}
+          <a 
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-transform hover:scale-110 hover:bg-gold-light"
+          >
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </motion.div>
+      </div>
     </section>
   );
 }
