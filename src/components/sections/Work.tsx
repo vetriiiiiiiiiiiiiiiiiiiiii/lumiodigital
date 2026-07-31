@@ -83,7 +83,7 @@ export default function Work() {
     queryFn: () => getContent(),
   });
 
-  const workData = content?.work || {
+  const workData = content?.projects || content?.work || {
     heading: "Fields we",
     headingHighlight: "work in",
     items: []
