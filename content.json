@@ -42,7 +42,22 @@
       { "title": "Miter Studio", "category": "Branding", "cat": "brand", "img": "/work-3.jpg", "year": "2024", "desc": "A complete identity system — logo, foil stationery, and guidelines — for a boutique creative studio." },
       { "title": "Agentix", "category": "Web App", "cat": "app", "img": "/work-4.jpg", "year": "2025", "desc": "An analytics SaaS platform with a refined dark dashboard, glass panels, and buttery data viz." },
       { "title": "Elior Skincare", "category": "Shopify", "cat": "web", "img": "/work-5.jpg", "tall": true, "year": "2024", "desc": "A premium Shopify build for a skincare brand, blending cinematic product shots with fast performance." },
-      { "title": "TSRM.in", "category": "Web Platform", "cat": "web", "img": "/tsrm-banner.png", "year": "2026", "desc": "A custom web application built with robust architecture, designed for maximum performance and a premium user experience." }
+      { "title": "TSRM.in", "category": "Web Platform", "cat": "web", "img": "/work-6.jpg", "year": "2026", "desc": "A custom web application built with robust architecture, designed for maximum performance and a premium user experience." }
     ]
+  },
+  "previousProject": {
+    "heading": "Our Previous",
+    "headingHighlight": "Project",
+    "title": "TSRM.in",
+    "subtitle": "Web Platform",
+    "img": "/tsrm-banner.png",
+    "year": "2026",
+    "desc": "A custom web application built with robust architecture, designed for maximum performance and a premium user experience.",
+    "stats": [
+      { "label": "Performance", "value": "99%" },
+      { "label": "Users", "value": "10k+" },
+      { "label": "Uptime", "value": "99.9%" }
+    ],
+    "link": "https://tsrm.in"
   }
 }
