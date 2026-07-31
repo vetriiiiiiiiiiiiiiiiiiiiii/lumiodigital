@@ -76,6 +76,7 @@ export function AdminDashboard() {
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [selectedField, setSelectedField] = useState<number | null>(null);
   const [selectedWork, setSelectedWork] = useState<number | null>(null);
+  const [selectedShowcase, setSelectedShowcase] = useState<number | null>(null);
 
   const mutation = useMutation({
     mutationFn: (newContent: any) => updateContent({ data: newContent }),
@@ -117,6 +118,7 @@ export function AdminDashboard() {
     if (section === "services") setSelectedService(0);
     if (section === "work") setSelectedField(0);
     if (section === "projects") setSelectedWork(0);
+    if (section === "previousProject") setSelectedShowcase(0);
   };
 
   const removeItem = (section: string, index: number) => {
@@ -126,16 +128,19 @@ export function AdminDashboard() {
     if (section === "services" && selectedService === index) setSelectedService(null);
     if (section === "work" && selectedField === index) setSelectedField(null);
     if (section === "projects" && selectedWork === index) setSelectedWork(null);
+    if (section === "previousProject" && selectedShowcase === index) setSelectedShowcase(null);
   };
 
   // --- Derived State ---
   const servicesList = formData.services?.items || [];
   const fieldsList = formData.work?.items || [];
   const worksList = formData.projects?.items || [];
+  const showcaseList = formData.previousProject?.items || [];
 
   const filteredServices = servicesList.filter((s: any) => !q || s.title.toLowerCase().includes(q.toLowerCase()) || s.desc.toLowerCase().includes(q.toLowerCase()));
   const filteredFields = fieldsList.filter((f: any) => !q || f.title.toLowerCase().includes(q.toLowerCase()) || f.category.toLowerCase().includes(q.toLowerCase()));
   const filteredWorks = worksList.filter((w: any) => !q || w.title.toLowerCase().includes(q.toLowerCase()) || w.category.toLowerCase().includes(q.toLowerCase()));
+  const filteredShowcase = showcaseList.filter((s: any) => !q || s.title.toLowerCase().includes(q.toLowerCase()) || (s.subtitle && s.subtitle.toLowerCase().includes(q.toLowerCase())));
 
   return (
     <div className="min-h-screen px-4 pb-12 pt-28 bg-[#050505] text-white">
@@ -315,76 +320,121 @@ export function AdminDashboard() {
 
         {/* SHOWCASE (PreviousProject) */}
         {activeTab === "showcase" && (
-          <div className="glass rounded-lg p-6 max-w-4xl mx-auto">
-            <h2 className="font-display text-2xl font-bold mb-6 text-gold-gradient">Edit Featured Showcase</h2>
-            <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <AdminField label="Section Heading Prefix">
-                  <input
-                    value={formData.previousProject?.heading || ""}
-                    onChange={(e) => updateSectionField("previousProject", "heading", e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
-                  />
-                </AdminField>
-                <AdminField label="Heading Highlight">
-                  <input
-                    value={formData.previousProject?.headingHighlight || ""}
-                    onChange={(e) => updateSectionField("previousProject", "headingHighlight", e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
-                  />
-                </AdminField>
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="glass rounded-lg p-6">
+              <div className="mb-4">
+                <h2 className="font-display text-2xl font-bold mb-4">Showcase Section</h2>
+                <div className="grid grid-cols-2 gap-4 mb-6 pb-6 border-b border-white/10">
+                  <AdminField label="Section Heading Prefix">
+                    <input
+                      value={formData.previousProject?.heading || ""}
+                      onChange={(e) => updateSectionField("previousProject", "heading", e.target.value)}
+                      className="w-full rounded-lg border border-white/10 bg-black/40 p-2 text-sm text-white focus:border-gold"
+                    />
+                  </AdminField>
+                  <AdminField label="Heading Highlight">
+                    <input
+                      value={formData.previousProject?.headingHighlight || ""}
+                      onChange={(e) => updateSectionField("previousProject", "headingHighlight", e.target.value)}
+                      className="w-full rounded-lg border border-white/10 bg-black/40 p-2 text-sm text-white focus:border-gold"
+                    />
+                  </AdminField>
+                </div>
+                
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h3 className="font-semibold text-lg">Showcase Projects</h3>
+                  <button
+                    onClick={() => addItem("previousProject", { title: "New Project", subtitle: "Category", img: "/work-1.jpg", link: "https://" })}
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 text-sm font-semibold hover:bg-gold/10 hover:text-gold"
+                  >
+                    <Plus size={15} /> Add Item
+                  </button>
+                </div>
               </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <AdminField label="Project Title">
-                  <input
-                    value={formData.previousProject?.title || ""}
-                    onChange={(e) => updateSectionField("previousProject", "title", e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
-                  />
-                </AdminField>
-                <AdminField label="Subtitle / Category">
-                  <input
-                    value={formData.previousProject?.subtitle || ""}
-                    onChange={(e) => updateSectionField("previousProject", "subtitle", e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
-                  />
-                </AdminField>
+              <div className="max-h-[500px] space-y-2 overflow-y-auto pr-1">
+                {filteredShowcase.map((showcaseItem: any, i: number) => {
+                  const originalIndex = showcaseList.indexOf(showcaseItem);
+                  return (
+                    <div
+                      key={originalIndex}
+                      className={`rounded-lg border p-3 transition-all flex items-center gap-3 ${selectedShowcase === originalIndex ? "border-gold bg-gold/10" : "border-white/10 bg-white/[0.03] hover:border-gold/30"}`}
+                    >
+                      <img src={showcaseItem.img} className="w-12 h-12 rounded object-cover border border-white/10" alt="" />
+                      <button onClick={() => setSelectedShowcase(originalIndex)} className="flex-1 text-left">
+                        <div className="font-semibold text-white">{showcaseItem.title}</div>
+                        <div className="mt-1 text-xs text-muted-foreground">{showcaseItem.subtitle}</div>
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
-
-              <AdminField label="Project Image">
-                <ImageCropper 
-                  aspectRatio={16 / 9} 
-                  currentImageUrl={formData.previousProject?.img}
-                  onUploadComplete={(url) => updateSectionField("previousProject", "img", url)} 
-                />
-              </AdminField>
-
-              <AdminField label="Description">
-                <textarea
-                  value={formData.previousProject?.desc || ""}
-                  onChange={(e) => updateSectionField("previousProject", "desc", e.target.value)}
-                  rows={3}
-                  className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
-                />
-              </AdminField>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <AdminField label="Live Link">
-                  <input
-                    value={formData.previousProject?.link || ""}
-                    onChange={(e) => updateSectionField("previousProject", "link", e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
-                  />
-                </AdminField>
-                <AdminField label="Year">
-                  <input
-                    value={formData.previousProject?.year || ""}
-                    onChange={(e) => updateSectionField("previousProject", "year", e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
-                  />
-                </AdminField>
-              </div>
+            </div>
+            
+            <div className="glass rounded-lg p-6">
+              <h2 className="font-display text-2xl font-bold text-gold-gradient">
+                {selectedShowcase !== null ? "Edit Showcase Item" : "Select an Item"}
+              </h2>
+              {selectedShowcase !== null ? (
+                <div className="mt-6 space-y-5">
+                  <div className="grid grid-cols-2 gap-4">
+                    <AdminField label="Project Title">
+                      <input
+                        value={showcaseList[selectedShowcase]?.title || ""}
+                        onChange={(e) => updateItem("previousProject", selectedShowcase, "title", e.target.value)}
+                        className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
+                      />
+                    </AdminField>
+                    <AdminField label="Subtitle / Category">
+                      <input
+                        value={showcaseList[selectedShowcase]?.subtitle || ""}
+                        onChange={(e) => updateItem("previousProject", selectedShowcase, "subtitle", e.target.value)}
+                        className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
+                      />
+                    </AdminField>
+                  </div>
+                  <AdminField label="Project Image">
+                    <ImageCropper 
+                      aspectRatio={16/9} 
+                      currentImageUrl={showcaseList[selectedShowcase]?.img}
+                      onUploadComplete={(url) => updateItem("previousProject", selectedShowcase, "img", url)} 
+                    />
+                  </AdminField>
+                  <AdminField label="Description">
+                    <textarea
+                      value={showcaseList[selectedShowcase]?.desc || ""}
+                      onChange={(e) => updateItem("previousProject", selectedShowcase, "desc", e.target.value)}
+                      rows={3}
+                      className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
+                    />
+                  </AdminField>
+                  <div className="grid grid-cols-2 gap-4">
+                    <AdminField label="Live Link">
+                      <input
+                        value={showcaseList[selectedShowcase]?.link || ""}
+                        onChange={(e) => updateItem("previousProject", selectedShowcase, "link", e.target.value)}
+                        className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
+                      />
+                    </AdminField>
+                    <AdminField label="Year">
+                      <input
+                        value={showcaseList[selectedShowcase]?.year || ""}
+                        onChange={(e) => updateItem("previousProject", selectedShowcase, "year", e.target.value)}
+                        className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm text-white focus:border-gold"
+                      />
+                    </AdminField>
+                  </div>
+                  <div className="pt-4 flex items-center justify-between border-t border-white/10">
+                    <button
+                      onClick={() => { removeItem("previousProject", selectedShowcase); setSelectedShowcase(null); }}
+                      className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-red-400 hover:bg-red-500/10"
+                    >
+                      <Trash2 size={16} /> Delete Showcase Item
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-10 text-center text-muted-foreground">Select an item from the left to edit its details.</div>
+              )}
             </div>
           </div>
         )}

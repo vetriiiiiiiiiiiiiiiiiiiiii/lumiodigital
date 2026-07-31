@@ -48,16 +48,15 @@
   "previousProject": {
     "heading": "Our Previous",
     "headingHighlight": "Project",
-    "title": "TSRM.in",
-    "subtitle": "Web Platform",
-    "img": "/tsrm-banner.png",
-    "year": "2026",
-    "desc": "A custom web application built with robust architecture, designed for maximum performance and a premium user experience.",
-    "stats": [
-      { "label": "Performance", "value": "99%" },
-      { "label": "Users", "value": "10k+" },
-      { "label": "Uptime", "value": "99.9%" }
-    ],
-    "link": "https://tsrm.in"
+    "items": [
+      {
+        "title": "TSRM.in",
+        "subtitle": "Web Platform",
+        "img": "/tsrm-banner.png",
+        "year": "2026",
+        "desc": "A custom web application built with robust architecture, designed for maximum performance and a premium user experience.",
+        "link": "https://tsrm.in"
+      }
+    ]
   }
 }
